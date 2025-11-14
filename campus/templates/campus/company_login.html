@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+
+{% block body_block %}
+<html>
+<head>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Background Gradient */
+    .login-bg {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    }
+
+    /* Glass Card */
+    .login-card {
+      max-width: 420px;
+      width: 100%;
+      padding: 2.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.75);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+      text-align: center;
+      color: #333;
+      animation: floatCard 1.5s ease-out;
+    }
+
+    /* Floating animation */
+    @keyframes floatCard {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Avatar Circle */
+    .login-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      border-radius: 50%;
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 5px 15px rgba(79,172,254,0.6);
+    }
+
+    .login-card h2 {
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .login-card p {
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+
+    .login-card label {
+      font-weight: 500;
+      float: left;
+      margin-bottom: 5px;
+      color: #222;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .login-card button:hover {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79,172,254,0.4);
+    }
+
+    .login-card a {
+      color: #007BFF;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .login-card a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-bg">
+    <div class="login-card">
+
+      <!-- Avatar Icon -->
+      <div class="login-avatar">
+        <i class="fas fa-building"></i>
+      </div>
+
+      <h2>Company Login</h2>
+      <p>Access your company account</p>
+
+      <form method="post">
+        {% csrf_token %}
+        <div>
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </div>
+        <div>
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </div>
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="text-center my-3" style="opacity:0.7;">──────── or ────────</div>
+
+      <div class="text-center">
+        <a href="/company/company_register/">
+          New company? Register here
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FontAwesome for Building Icon -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
+{% endblock %}

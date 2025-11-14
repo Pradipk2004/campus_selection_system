@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends "campus/base.html" %}
+
+{% block body_block %}
+
+<div class="container my-5">
+  <!-- Welcome -->
+  <div class="row mb-5">
+    <div class="col text-center">
+      <h2 class="fw-bold">Hello, {{ user.username|title }} 👋</h2>
+      <p class="text-muted">Welcome to your placement dashboard. Choose an action below.</p>
+    </div>
+  </div>
+
+  <!-- Dashboard Cards -->
+  <div class="row text-center">
+    <!-- View Profile -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-lg border-0 rounded-3 h-100">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center p-4">
+          <span class="icon-user h1 text-primary mb-3"></span>
+          <h5 class="card-title mb-3">View Profile</h5>
+          <p class="text-muted">See your personal details and resume.</p>
+          <a href="http://127.0.0.1:8000/student/student_login/dispstu/"
+             class="btn btn-primary mt-auto">Go</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Profile -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-lg border-0 rounded-3 h-100">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center p-4">
+          <span class="icon-edit h1 text-success mb-3"></span>
+          <h5 class="card-title mb-3">Update Profile</h5>
+          <p class="text-muted">Keep your information up-to-date.</p>
+          <a href="http://127.0.0.1:8000/student/student_login/usd/"
+             class="btn btn-success mt-auto">Update</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apply for Company -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-lg border-0 rounded-3 h-100">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center p-4">
+          <span class="icon-briefcase h1 text-warning mb-3"></span>
+          <h5 class="card-title mb-3">Apply for Company</h5>
+          <p class="text-muted">Browse available jobs and apply directly.</p>
+          <a href="http://127.0.0.1:8000/student/student_login/applyjob"
+             class="btn btn-warning text-white mt-auto">Apply</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

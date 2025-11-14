@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+{% load static %}
+
+{% block body_block %}
+<html>
+<head>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Background */
+    .register-bg {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    }
+
+    /* Glass Card */
+    .register-card {
+      max-width: 500px;
+      width: 100%;
+      padding: 2.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+      color: #333;
+      animation: floatCard 1.5s ease-out;
+    }
+
+    @keyframes floatCard {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .register-card h2 {
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #222;
+    }
+
+    .register-card p {
+      opacity: 0.8;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .register-card label {
+      font-weight: 500;
+      color: #222;
+    }
+
+    .register-card input,
+    .register-card select,
+    .register-card textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    .register-card button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .register-card button:hover {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79,172,254,0.4);
+    }
+
+    /* Messages & Errors */
+    .alert {
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .alert-danger {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #b30000;
+      border: 1px solid #ff8080;
+    }
+    .alert-success {
+      background-color: rgba(0, 255, 0, 0.1);
+      color: #006600;
+      border: 1px solid #66cc66;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-bg">
+    <div class="register-card">
+
+      <h2>Register Here!</h2>
+      <p>Create your account to get started</p>
+
+      <!-- Show Messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Show Errors -->
+      {% if form.errors %}
+        {% for field in form %}
+          {% for error in field.errors %}
+            <div class="alert alert-danger">{{ error|escape }}</div>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">{{ error|escape }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Registration Form -->
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" name="submit" value="Register">
+          Register
+        </button>
+      </form>
+
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}
